@@ -1,6 +1,6 @@
-class CreatePlanExercises < ActiveRecord::Migration[8.1]
+class CreateEntries < ActiveRecord::Migration[8.1]
   def change
-    create_table :plan_exercises do |t|
+    create_table :entries do |t|
       t.integer :reps
       t.integer :sets
       t.integer :order
