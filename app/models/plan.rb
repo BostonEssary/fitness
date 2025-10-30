@@ -1,4 +1,4 @@
 class Plan < ApplicationRecord
-  has_many :plan_exercises
-  has_many :exercises, through: :plan_exercises
+  has_many :entries, dependent: :destroy
+  has_many :exercises, through: :entries, dependent: :destroy
 end
