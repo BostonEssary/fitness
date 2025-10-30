@@ -1,0 +1,13 @@
+<%= form_with(model: plan) do |form| %>
+  <%= render "shared/errors", object: plan %>
+
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit plan.new_record? ? "Create Plan" : "Update Plan" %>
+  </div>
+<% end %>
+
