@@ -23,6 +23,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_30_012214) do
   create_table "plan_exercises", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "exercise_id", null: false
+    t.integer "order"
     t.bigint "plan_id", null: false
     t.integer "reps"
     t.integer "sets"
