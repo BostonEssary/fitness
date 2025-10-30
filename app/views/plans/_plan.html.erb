@@ -1,0 +1,8 @@
+<h1><%= plan.name %></h1>
+
+<h3>Excersies</h3>
+<ol>
+  <% plan.entries.each do | entry | %>
+    <li><%= entry.exercise.name %></li>
+  <% end %>
+</ol>
