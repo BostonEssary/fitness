@@ -1,0 +1,16 @@
+<%= form_with(url: new_plan_path, method: :get, local: true) do |form| %>
+  <div>
+    <%= form.label :name, "Plan Name" %><br>
+    <%= form.text_field :name, value: plan.name %>
+  </div>
+
+  <div>
+    <%= form.label :days, "Days" %><br>
+    <%= form.number_field :days, value: plan.days, min: 1, max: 7, value: 3 %>
+  </div>
+
+  <div>
+    <%= form.submit "Start Planning" %>
+  </div>
+<% end %>
+
