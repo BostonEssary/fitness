@@ -34,6 +34,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_30_012214) do
 
   create_table "plans", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "days"
     t.string "name"
     t.datetime "updated_at", null: false
   end
