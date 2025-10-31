@@ -1,0 +1,15 @@
+<h1>Exercises</h1>
+
+<p><%= link_to "New Exercise", new_exercise_path %></p>
+
+<% if @exercises.any? %>
+  <ul>
+    <% @exercises.each do |exercise| %>
+      <li><%= exercise.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No exercises yet.</p>
+<% end %>
+
+
