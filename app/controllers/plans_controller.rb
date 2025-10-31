@@ -15,6 +15,8 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
+    @plan.name = params[:name] if params[:name].present?
+    @plan.days = params[:days] if params[:days].present?
     @plan.entries.build
     @exercises = Exercise.all
   end
@@ -37,6 +39,7 @@ class PlansController < ApplicationController
   def plan_params
     params.require(:plan).permit(
       :name,
+      :days,
       entries_attributes: [
         :exercise_id,
         :sets,
