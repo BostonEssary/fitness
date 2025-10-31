@@ -5,6 +5,7 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
+    @exercises = Exercise.all
     if @plan.save
       redirect_to @plan, notice: "Plan was successfully created."
     else
@@ -14,6 +15,8 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
+    @plan.entries.build
+    @exercises = Exercise.all
   end
 
   def show
@@ -32,6 +35,16 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:name)
+    params.require(:plan).permit(
+      :name,
+      entries_attributes: [
+        :exercise_id,
+        :sets,
+        :reps,
+        :order,
+        :id,
+        :_destroy
+      ]
+    )
   end
 end

@@ -6,8 +6,15 @@
     <%= form.text_field :name %>
   </div>
 
+  <fieldset>
+    <legend>Entries</legend>
+    <%= form.fields_for :entries do |entry_form| %>
+      <%= render "entries/form_fields", form: entry_form, exercises: exercises %>
+    <% end %>
+  </fieldset>
+
   <div>
-    <%= form.submit plan.new_record? ? "Create Plan" : "Update Plan" %>
+    <%= form.submit %>
   </div>
 <% end %>
 
