@@ -1,1 +1,9 @@
-<%= render partial: 'plan_row', collection: @plans, as: :plan %>
+<h1>Plans</h1>
+
+<p>
+  <%= link_to "New Plan", new_plan_path %>
+  </p>
+
+<ul>
+  <%= render partial: 'plan_row', collection: @plans, as: :plan %>
+</ul>
