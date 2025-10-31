@@ -1,17 +1,22 @@
 <%= form_with(model: plan) do |form| %>
   <%= render "shared/errors", object: plan %>
 
+  <%= form.hidden_field :days %>
+
   <div>
     <%= form.label :name %><br>
     <%= form.text_field :name %>
   </div>
 
-  <fieldset>
-    <legend>Entries</legend>
-    <%= form.fields_for :entries do |entry_form| %>
-      <%= render "entries/form_fields", form: entry_form, exercises: exercises %>
-    <% end %>
-  </fieldset>
+  <% (1..plan.days.to_i).each do |day| %>
+    <fieldset>
+      <legend>Day <%= day %> Exercises</legend>
+      <%= form.fields_for :entries do |entry_form| %>
+        <%= entry_form.hidden_field :day, value: day %>
+        <%= render "entries/form_fields", form: entry_form, exercises: exercises %>
+      <% end %>
+    </fieldset>
+  <% end %>
 
   <div>
     <%= form.submit %>
