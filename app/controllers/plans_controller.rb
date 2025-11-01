@@ -46,6 +46,7 @@ class PlansController < ApplicationController
         :reps,
         :order,
         :id,
+        :day,
         :_destroy
       ]
     )
