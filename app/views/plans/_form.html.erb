@@ -9,17 +9,35 @@
   </div>
 
   <% (1..plan.days.to_i).each do |day| %>
-    <fieldset>
+    <fieldset data-controller="nested-form">
       <legend>Day <%= day %> Exercises</legend>
       <%= form.fields_for :entries do |entry_form| %>
         <%= entry_form.hidden_field :day, value: day %>
         <%= render "entries/form_fields", form: entry_form, exercises: exercises %>
       <% end %>
+
+      <div data-nested-form-target="target">
+      </div>
+
+      <button type="button" data-action="nested-form#add">Add Exercise</button>
+
+      <template data-nested-form-target="template">
+        <%= form.fields_for :entries, Entry.new, child_index: 'NEW_RECORD' do |entry_form| %>
+          <%= entry_form.hidden_field :day, value: day %>
+          <%= render "entries/form_fields", form: entry_form, exercises: exercises %>
+        <% end %>
+      </template>
     </fieldset>
   <% end %>
 
   <div>
     <%= form.submit %>
   </div>
+
+  <template data-nested-form-target="template">
+
+    <%= render "entries/form_fields", form: form, exercises: exercises %>
+  </template>
 <% end %>
+
 
