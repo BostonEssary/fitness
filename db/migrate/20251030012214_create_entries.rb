@@ -5,6 +5,7 @@ class CreateEntries < ActiveRecord::Migration[8.1]
       t.integer :sets
       t.integer :order
       t.integer :day
+      t.datetime :completed_at
       t.references :plan, null: false, foreign_key: true
       t.references :exercise, null: false, foreign_key: true
 

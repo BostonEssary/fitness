@@ -15,6 +15,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_30_012214) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "entries", force: :cascade do |t|
+    t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.integer "day"
     t.bigint "exercise_id", null: false
