@@ -1,8 +1,23 @@
 <h1><%= plan.name %></h1>
 
-<h3>Excersies</h3>
-<ol>
-  <% plan.entries.each do | entry | %>
-    <li><%= entry.exercise.name %></li>
-  <% end %>
-</ol>
+<% entries_by_day = plan.entries_by_day %>
+<% (1..plan.days).each do |day_number| %>
+  <section>
+    <h2>Day <%= day_number %></h2>
+    <% day_entries = entries_by_day[day_number] || [] %>
+    <% if day_entries.any? %>
+      <ol>
+        <% day_entries.each do |entry| %>
+          <li>
+            <%= entry.exercise.name %>
+            <% if entry.sets.present? || entry.reps.present? %>
+              (<%= "#{entry.sets} sets" if entry.sets.present? %><%= " × " if entry.sets.present? && entry.reps.present? %><%= "#{entry.reps} reps" if entry.reps.present? %>)
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    <% else %>
+      <p>No exercises for this day.</p>
+    <% end %>
+  </section>
+<% end %>
