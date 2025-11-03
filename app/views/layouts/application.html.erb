@@ -23,7 +23,23 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class='container'>
+    <nav class='sidenav'>
+      <ul class='sidenav-list'>
+        <li>
+          <%= link_to "Plans", plans_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </nav>
+    <main class='main'>
+      <%= yield %>
+    </main>
+    <nav class='bottom-nav'>
+      <ul class='bottom-nav-list'>
+        <li>
+          <%= link_to "Plans", plans_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </nav>
   </body>
 </html>
