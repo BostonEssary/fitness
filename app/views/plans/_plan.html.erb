@@ -1,26 +1,25 @@
 <h1><%= plan.name %></h1>
 
 <% entries_by_day = plan.entries_by_day %>
-<% (1..plan.days).each do |day_number| %>
-  <section>
-    <h2>Day <%= day_number %></h2>
-    <% day_entries = entries_by_day[day_number] || [] %>
-    <% if day_entries.any? %>
-      <ol>
-        <% day_entries.each do |entry| %>
-          <li>
-            <label>
-              <input type="checkbox" name="entry_<%= entry.id %>" id="entry_<%= entry.id %>">
-              <%= entry.exercise.name %>
-              <% if entry.sets.present? || entry.reps.present? %>
-                (<%= "#{entry.sets} sets" if entry.sets.present? %><%= " × " if entry.sets.present? && entry.reps.present? %><%= "#{entry.reps} reps" if entry.reps.present? %>)
-              <% end %>
-            </label>
-          </li>
-        <% end %>
-      </ol>
-    <% else %>
-      <p>No exercises for this day.</p>
-    <% end %>
-  </section>
-<% end %>
+<div data-controller="checklist">
+  <% (1..plan.days).each do |day_number| %>
+    <section>
+      <h2>Day <%= day_number %></h2>
+      <% day_entries = entries_by_day[day_number] || [] %>
+      <% if day_entries.any? %>
+        <ol>
+          <% day_entries.each do |entry| %>
+            <li>
+              <label class="<%= entry.completed? ? "completed" : "" %>">
+                <%= check_box_tag "entry_#{entry.id}", entry.id, false, id: "entry_#{entry.id}", checked: entry.completed?, data: { action: "checklist#toggle", completion_url: entry_complete_path(entry) } %>
+                <%= entry.exercise.name + " " + entry.humanized_sets_and_reps %>
+              </label>
+            </li>
+          <% end %>
+        </ol>
+      <% else %>
+        <p>No exercises for this day.</p>
+      <% end %>
+    </section>
+  <% end %>
+</div>
