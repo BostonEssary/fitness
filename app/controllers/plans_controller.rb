@@ -5,10 +5,11 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    @exercises = Exercise.all
+    
     if @plan.save
       redirect_to @plan, notice: "Plan was successfully created."
     else
+      @exercises = Exercise.all
       render :new, status: :unprocessable_entity
     end
   end
@@ -22,16 +23,7 @@ class PlansController < ApplicationController
   end
 
   def show
-    @plan = Plan.find(params[:id])
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
+    @plan = Plan.includes(entries: :exercise).find(params[:id])
   end
 
   private
