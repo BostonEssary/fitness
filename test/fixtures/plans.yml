@@ -2,6 +2,8 @@
 
 one:
   name: MyString
+  days: 7
 
 two:
   name: MyString
+  days: 7
