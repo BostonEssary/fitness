@@ -3,13 +3,9 @@ import { post } from "@rails/request.js"
 
 // Connects to data-controller="checklist"
 export default class extends Controller {
-  connect() {
-    console.log("Checklist controller connected")
-  }
-
+  connect() {}
 
   toggle(event) {
-    event.preventDefault()
     const checkbox = event.target
     const url = checkbox.dataset.completionUrl
     this.completeItem(checkbox, url)
