@@ -41,22 +41,22 @@ muscle_groups = [
 
 puts "Creating plans..."
 muscle_groups.each do |muscle_group|
-  Plan.find_or_create_by!(name: muscle_group)
+  Plan.find_or_create_by!(name: muscle_group, days: 7)
 end
 
 # create 10 entries for each plan
 puts "Creating entries..."
 Plan.all.each do |plan|
   entries = [
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 1 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 2 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 3 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 4 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 5 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 6 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 7 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 8 },
-    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 9 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 1, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 2, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 3, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 4, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 5, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 6, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 7, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 8, day: 1 },
+    { exercise: Exercise.all.sample, plan: plan, reps: rand(10..20), sets: rand(3..5), order: 9, day: 1 },
   ]
   entries.each do |entry|
     Entry.find_or_create_by!(entry)
