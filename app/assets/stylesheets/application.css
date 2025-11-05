@@ -45,6 +45,38 @@
  text-decoration: line-through;
 }
 
+/* Flash Messages */
+.flash {
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.flash-notice {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.flash-alert {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.flash-error {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.flash-warning {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
 @media (max-width: 768px) {
  .container {
   grid-template-columns: 1fr;

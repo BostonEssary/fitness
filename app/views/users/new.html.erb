@@ -1,0 +1,31 @@
+<h1>Create an Account</h1>
+
+<%= form_with model: @user do |form| %>
+  <%= render "shared/errors", object: @user %>
+
+  <fieldset>
+    <legend>Registration Details</legend>
+    
+    <div>
+      <%= form.label :email_address, "Email Address" %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address" %>
+    </div>
+    
+    <div>
+      <%= form.label :password, "Password" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter your password", maxlength: 72 %>
+    </div>
+    
+    <div>
+      <%= form.label :password_confirmation, "Confirm Password" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", maxlength: 72 %>
+    </div>
+    
+    <%= form.submit "Create Account" %>
+  </fieldset>
+<% end %>
+
+<p>
+  Already have an account? <%= link_to "Sign in", new_session_path %>
+</p>
+
