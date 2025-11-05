@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   resources :plans, only: [ :show, :index, :new, :create ]
   resources :exercises, only: [ :index, :new, :create ]
   resources :entries do
