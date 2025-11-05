@@ -10,9 +10,11 @@
 
 #clear all existing data
 puts "Clearing existing data..."
+User.destroy_all
 Exercise.destroy_all
 Plan.destroy_all
 Entry.destroy_all
+PlanEnrollment.destroy_all
 
 exercises = [
   { name: "Push-ups" },
@@ -71,3 +73,39 @@ Plan.all.each do |plan|
     Entry.find_or_create_by!(entry)
   end
 end
+
+# create default users
+puts "Creating users..."
+users_data = [
+  { email_address: "john@example.com", password: "password123" },
+  { email_address: "jane@example.com", password: "password123" },
+  { email_address: "mike@example.com", password: "password123" },
+  { email_address: "sarah@example.com", password: "password123" },
+  { email_address: "demo@example.com", password: "password" },
+]
+
+users = []
+users_data.each do |user_data|
+  users << User.create!(user_data)
+end
+
+# enroll users into plans
+puts "Enrolling users into plans..."
+plans = Plan.all.to_a
+
+users.each_with_index do |user, index|
+  # Assign each user to a different plan (cycling through available plans)
+  plan = plans[index % plans.length]
+  PlanEnrollment.create!(
+    user: user,
+    plan: plan,
+    status: :active
+  )
+  puts "  Enrolled #{user.email_address} into #{plan.name} plan (#{plan.days} days)"
+end
+
+puts "\nSeed data created successfully!"
+puts "Users created: #{User.count}"
+puts "Plans created: #{Plan.count}"
+puts "Entries created: #{Entry.count}"
+puts "Plan enrollments created: #{PlanEnrollment.count}"
