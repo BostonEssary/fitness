@@ -1,0 +1,28 @@
+<main>
+  <h1>Dashboard</h1>
+
+  <section>
+    <h2>Active Plan</h2>
+    <% if @active_plan %>
+      <article>
+        <h3><%= link_to @active_plan.name, plan_path(@active_plan) %></h3>
+        <p><%= @active_plan.days %> days</p>
+      </article>
+    <% else %>
+      <p>No active plan</p>
+    <% end %>
+  </section>
+
+  <% if @past_plans.any? %>
+    <section>
+      <h2>Past Plans</h2>
+      <% @past_plans.each do |plan| %>
+        <article>
+          <h3><%= link_to plan.name, plan_path(plan) %></h3>
+          <p><%= plan.days %> days</p>
+        </article>
+      <% end %>
+    </section>
+  <% end %>
+</main>
+

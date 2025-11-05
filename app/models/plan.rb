@@ -1,6 +1,8 @@
 class Plan < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :exercises, through: :entries, dependent: :destroy
+  has_many :plan_enrollments, dependent: :destroy
+  has_many :users, through: :plan_enrollments
   accepts_nested_attributes_for :entries, allow_destroy: true
 
   validates :name, presence: true

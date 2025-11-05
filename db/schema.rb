@@ -14,15 +14,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_05_041433) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "active_plans", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.bigint "plan_id", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["plan_id"], name: "index_active_plans_on_plan_id"
-    t.index ["user_id"], name: "index_active_plans_on_user_id"
-  end
-
   create_table "entries", force: :cascade do |t|
     t.datetime "completed_at"
     t.datetime "created_at", null: false
@@ -41,6 +32,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_05_041433) do
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
+  end
+
+  create_table "plan_enrollments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "end_date"
+    t.bigint "plan_id", null: false
+    t.date "start_date"
+    t.integer "status", default: 0
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["plan_id"], name: "index_plan_enrollments_on_plan_id"
+    t.index ["user_id"], name: "index_plan_enrollments_on_user_id"
   end
 
   create_table "plans", force: :cascade do |t|
@@ -67,9 +70,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_05_041433) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
-  add_foreign_key "active_plans", "plans"
-  add_foreign_key "active_plans", "users"
   add_foreign_key "entries", "exercises"
   add_foreign_key "entries", "plans"
+  add_foreign_key "plan_enrollments", "plans"
+  add_foreign_key "plan_enrollments", "users"
   add_foreign_key "sessions", "users"
 end
