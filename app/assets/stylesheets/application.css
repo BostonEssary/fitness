@@ -28,9 +28,29 @@
   padding: 20px;
  }
 
- .sidenav-list {
+.sidenav-list {
   list-style: none;
- }
+  padding: 0;
+}
+
+.sidenav-list form,
+.bottom-nav-list form {
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav-list button,
+.bottom-nav-list button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+}
 
  .main {
   grid-area: main;

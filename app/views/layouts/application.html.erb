@@ -26,9 +26,7 @@
   <body class='container'>
     <nav class='sidenav'>
       <ul class='sidenav-list'>
-        <li>
-          <%= link_to "Plans", plans_path, class: "nav-link" %>
-        </li>
+        <%= render "shared/nav_links" %>
       </ul>
     </nav>
     <main class='main'>
@@ -37,9 +35,7 @@
     </main>
     <nav class='bottom-nav'>
       <ul class='bottom-nav-list'>
-        <li>
-          <%= link_to "Plans", plans_path, class: "nav-link" %>
-        </li>
+        <%= render "shared/nav_links" %>
       </ul>
     </nav>
   </body>

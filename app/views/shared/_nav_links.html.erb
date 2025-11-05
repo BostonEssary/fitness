@@ -1,0 +1,13 @@
+<li>
+  <%= link_to "Plans", plans_path, class: "nav-link" %>
+</li>
+<% if Current.user %>
+  <li>
+    <%= button_to "Log Out", session_path, method: :delete, class: "nav-link" %>
+  </li>
+<% else %>
+  <li>
+    <%= link_to "Log In", new_session_path, class: "nav-link" %>
+  </li>
+<% end %>
+
