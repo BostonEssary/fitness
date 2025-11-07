@@ -1,0 +1,15 @@
+<fieldset>
+  <legend>Set <%= set_number %></legend>
+  <%= form.hidden_field :entry_id, value: entry.id %>
+  <%= form.hidden_field :order, value: form.index + 1 %>
+  
+  <div>
+    <%= form.label :reps, "Reps" %>
+    <%= form.number_field :reps, min: 1 %>
+  </div>
+  
+  <div>
+    <%= form.label :weight, "Weight" %>
+    <%= form.number_field :weight, min: 1, step: 0.5 %>
+  </div>
+</fieldset>
