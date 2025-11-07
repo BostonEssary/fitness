@@ -17,6 +17,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_06_204743) do
   create_table "completed_sets", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.bigint "entry_id", null: false
+    t.integer "order"
     t.integer "reps"
     t.datetime "updated_at", null: false
     t.integer "weight"
@@ -86,7 +87,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_06_204743) do
     t.datetime "created_at", null: false
     t.integer "day"
     t.bigint "plan_enrollment_id", null: false
-    t.integer "status"
+    t.integer "status", default: 0
     t.datetime "updated_at", null: false
     t.index ["plan_enrollment_id"], name: "index_workouts_on_plan_enrollment_id"
   end

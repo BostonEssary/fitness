@@ -4,7 +4,8 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to @workout, notice: "Workout was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      @plan_enrollment = @workout.plan_enrollment
+      render 'plan_enrollments/show', status: :unprocessable_entity
     end
   end
 

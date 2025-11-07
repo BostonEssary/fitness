@@ -5,6 +5,7 @@ class CreateCompletedSets < ActiveRecord::Migration[8.1]
       t.references :entry, null: false, foreign_key: true
       t.integer :reps
       t.integer :weight
+      t.integer :order
 
       t.timestamps
     end
