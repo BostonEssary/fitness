@@ -1,0 +1,29 @@
+<section>
+  <header>
+    <h1>Plan Enrollment</h1>
+  </header>
+
+  <article>
+    <h2>Plan Name</h2>
+    <p><%= @plan_enrollment.plan.name %></p>
+  </article>
+
+  <div>
+    <h2>Plan Days</h2>
+    <div>
+        <% entries_by_day = @plan_enrollment.plan.entries_by_day %>
+        <% entries_by_day.each do |day, entries| %>
+            <div>
+                <h3>Day <%= day %></h3>
+                <%= button_to "Start Workout    ", workouts_path(workout: { plan_enrollment_id: @plan_enrollment.id, day: day }), method: :post %>
+                <ul>
+                    <% entries.each do |entry| %>
+                        <li><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+    </div>
+  </div>
+</section>
+
