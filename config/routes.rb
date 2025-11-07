@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [ :new, :create ]
   resources :passwords, param: :token
   resources :plans, only: [ :show, :index, :new, :create ]
-  resources :plan_enrollments, only: [ :show ]
+  resources :plan_enrollments, only: [ :show, :create ]
   resources :exercises, only: [ :index, :new, :create ]
   resources :entries do
     resource :complete, only: [:create], controller: 'entries/complete'
