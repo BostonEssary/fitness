@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan_enrollment: one
+  day: 1
+  status: 1
+  completed_at: 2025-11-05 00:14:06
+
+two:
+  plan_enrollment: two
+  day: 1
+  status: 1
+  completed_at: 2025-11-05 00:14:06
