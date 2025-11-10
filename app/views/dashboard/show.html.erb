@@ -3,10 +3,12 @@
 
   <section>
     <h2>Active Plan</h2>
-    <% if @active_plan %>
+    <% if @active_plans.any? %>
       <article>
-        <h3><%= link_to @active_plan.name, plan_path(@active_plan) %></h3>
-        <p><%= @active_plan.days %> days</p>
+        <% @active_plans.each do |plan| %>
+          <h3><%= link_to plan.name, plan_path(plan) %></h3>
+          <p><%= plan.days %> days</p>
+        <% end %>
       </article>
     <% else %>
       <p>No active plan</p>

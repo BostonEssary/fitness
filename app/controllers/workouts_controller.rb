@@ -1,4 +1,10 @@
 class WorkoutsController < ApplicationController
+
+  def index
+    @active_workouts = Current.user.active_workouts
+    @past_workouts = Current.user.past_workouts
+  end
+
   def create
     @workout = Workout.new(workout_params)
     if @workout.save

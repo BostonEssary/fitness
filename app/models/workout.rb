@@ -23,4 +23,8 @@ class Workout < ApplicationRecord
 
     [completed_sets_by_entry[entry.id].count, entry.sets].max
   end
+
+  def name
+    plan_enrollment.plan.name
+  end
 end

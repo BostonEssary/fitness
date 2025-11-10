@@ -1,0 +1,19 @@
+<h1>Workouts</h1>
+
+<% if @active_workouts.any? %>
+  <h2>Active Workouts</h2>
+  <ul>
+    <% @active_workouts.each do |workout| %>
+      <li><%= link_to workout.name, workout_path(workout) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @past_workouts.any? %>
+  <h2>Past Workouts</h2>
+  <ul>
+    <% @past_workouts.each do |workout| %>
+      <li><%= workout.day %></li>
+    <% end %>
+  </ul>
+<% end %>
