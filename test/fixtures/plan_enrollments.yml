@@ -7,3 +7,8 @@ one:
 two:
   user: two
   plan: two
+
+inactive:
+  user: one
+  plan: one
+  status: 1

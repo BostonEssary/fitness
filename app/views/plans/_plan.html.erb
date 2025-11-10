@@ -10,10 +10,7 @@
         <ol>
           <% day_entries.each do |entry| %>
             <li>
-              <label class="<%= entry.completed? ? "completed" : "" %>">
-                <%= check_box_tag "entry_#{entry.id}", entry.id, false, id: "entry_#{entry.id}", checked: entry.completed?, data: { action: "checklist#toggle:prevent", completion_url: entry_complete_path(entry) } %>
-                <%= entry.exercise.name + " " + entry.humanized_sets_and_reps %>
-              </label>
+              <%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %>
             </li>
           <% end %>
         </ol>
@@ -22,4 +19,6 @@
       <% end %>
     </section>
   <% end %>
+
+  <%= button_to "Activate Plan", plan_enrollments_path(plan_enrollment: { plan_id: plan.id, user_id: Current.user.id }), method: :post %>
 </div>

@@ -7,24 +7,18 @@
 
   <article>
     <h2>Workout Details</h2>
-    # display all entries for the workout from plan via day
-    <% entries = @workout.plan_enrollment.plan.entries.where(day: @workout.day) %>
+    <%= form_with model: @workout, url: workout_path(@workout), method: :put do |form| %>
     <ul>
-      <% entries.each do |entry| %>
+      <% @entries.each_with_index do |entry, index| %>
+        <% set_number = 1 %>                  
         <li><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></li>
-        <% entry.sets.times do |index| %>
-          <%= "Set #{index + 1}" %>
-          <%= form_with model: CompletedSet.new, url: completed_sets_path, method: :post do |form| %>
-            <%= form.hidden_field :workout_id, value: @workout.id %>
-            <%= form.hidden_field :entry_id, value: entry.id %>
-              <%= form.label :reps, "Reps" %>
-              <%= form.number_field :reps, min: 1 %>
-              <%= form.label :weight, "Weight" %>
-              <%= form.number_field :weight, min: 1 %>
-            <%= form.submit "Complete Set" %>
-          <% end %>
+        <%= form.fields_for :completed_sets, @completed_sets_by_entry[entry.id] do |completed_set_form| %>
+          <%= render 'completed_sets/form', form: completed_set_form, entry: entry, set_number: set_number %>
+          <% set_number += 1 %>
         <% end %>
       <% end %>
     </ul>
+    <%= form.submit "Complete Workout" %>
+    <% end %>
   </article>
 </section>

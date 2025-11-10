@@ -18,16 +18,16 @@ not_completed:
   order: 1
   completed_at: nil
 
-entry_one:
+one:
   reps: 1
-  sets: 1
+  sets: 2
   plan: one
   exercise: one
   day: 1
   order: 1
   completed_at: nil
 
-entry_two:
+two:
   reps: 1
   sets: 1
   day: 1

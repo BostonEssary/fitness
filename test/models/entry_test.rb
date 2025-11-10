@@ -2,18 +2,18 @@ require "test_helper"
 
 class EntryTest < ActiveSupport::TestCase
   test "should be valid with valid attributes" do
-    entry = entries(:entry_one)
+    entry = entries(:one)
     assert entry.valid?
   end
 
   test "should not be valid without a day" do
-    entry = entries(:entry_one)
+    entry = entries(:one)
     entry.day = nil
     assert_not entry.valid?
   end
 
   test "should not be valid without an order" do
-    entry = entries(:entry_one)
+    entry = entries(:one)
     entry.order = nil
     assert_not entry.valid?
   end
@@ -29,7 +29,7 @@ class EntryTest < ActiveSupport::TestCase
   end
 
   test "should have a humanized sets and reps" do
-    entry = entries(:entry_one)
+    entry = entries(:one)
     assert_equal "1 sets × 1 reps", entry.humanized_sets_and_reps
   end
 end
