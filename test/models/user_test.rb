@@ -6,6 +6,16 @@ class UserTest < ActiveSupport::TestCase
     assert_equal("downcased@example.com", user.email_address)
   end
 
+  test "active_plans" do
+    user = users(:one)
+    assert_equal(user.active_plans.count, 1)
+  end
+
+  test "workouts" do
+    user = users(:one)
+    assert_equal(user.workouts.count, 2)
+  end
+
   test "active_workouts" do
     user = users(:one)
     assert_equal(user.active_workouts.count, 1)
