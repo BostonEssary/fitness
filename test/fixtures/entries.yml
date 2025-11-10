@@ -18,7 +18,7 @@ not_completed:
   order: 1
   completed_at: nil
 
-entry_one:
+one:
   reps: 1
   sets: 1
   plan: one
@@ -27,7 +27,7 @@ entry_one:
   order: 1
   completed_at: nil
 
-entry_two:
+two:
   reps: 1
   sets: 1
   day: 1
