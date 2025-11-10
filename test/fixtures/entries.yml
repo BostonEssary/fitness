@@ -20,7 +20,7 @@ not_completed:
 
 one:
   reps: 1
-  sets: 1
+  sets: 2
   plan: one
   exercise: one
   day: 1
