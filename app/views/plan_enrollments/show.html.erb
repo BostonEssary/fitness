@@ -14,7 +14,12 @@
         <% @plan_enrollment.plan.entries_by_day.each do |day, entries| %>
             <div>
                 <h3>Day <%= day %></h3>
-                <%= button_to "Start Workout    ", workouts_path(workout: { plan_enrollment_id: @plan_enrollment.id, day: day }), method: :post %>
+                <% if @plan_enrollment.workouts.started.find_by(day: day).present? %>
+                    <p>Workout started on <%= @plan_enrollment.workouts.started.find_by(day: day).created_at.strftime("%B %d, %Y") %></p>
+                    <%= link_to "Resume Workout", workout_path(@plan_enrollment.workouts.started.find_by(day: day)), method: :put %>
+                <% else %>
+                    <%= button_to "Start Workout    ", workouts_path(workout: { plan_enrollment_id: @plan_enrollment.id, day: day }), method: :post %>
+                <% end %>
                 <ul>
                     <% entries.each do |entry| %>
                         <li><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></li>

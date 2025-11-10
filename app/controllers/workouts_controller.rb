@@ -11,6 +11,7 @@ class WorkoutsController < ApplicationController
       redirect_to @workout, notice: "Workout was successfully created."
     else
       @plan_enrollment = @workout.plan_enrollment
+      flash.now[:alert] = @workout.errors.full_messages.join(", ")
       render 'plan_enrollments/show', status: :unprocessable_entity
     end
   end

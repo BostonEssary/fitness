@@ -3,8 +3,9 @@ class Workout < ApplicationRecord
   has_many :completed_sets
   accepts_nested_attributes_for :completed_sets, reject_if: lambda { |attrs| attrs[:reps].blank? || attrs[:weight].blank? }
 
-  enum :status, { pending: 0, completed: 1, skipped: 2 }
+  enum :status, { started: 0, completed: 1, skipped: 2 }
 
+  validate :only_one_started_workout_per_plan_enrollment
 
   def completed_sets_by_entry
     completed_sets.group_by(&:entry_id).transform_values do |sets|
@@ -26,5 +27,11 @@ class Workout < ApplicationRecord
 
   def name
     plan_enrollment.plan.name
+  end
+
+  def only_one_started_workout_per_plan_enrollment
+    if plan_enrollment.workouts.started.count > 1
+      errors.add(:base, "Only one started workout per plan enrollment is allowed")
+    end
   end
 end
