@@ -1,17 +1,21 @@
-<fieldset class="my-4 py-4 border-b border-border last:border-b-0">
-  <legend class="font-semibold text-foreground">Set <%= set_number %></legend>
-  <%= form.hidden_field :entry_id, value: entry.id %>
-  <%= form.hidden_field :order, value: form.index + 1 %>
-  
-  <div class="flex gap-2">
-    <div>
-      <%= form.label :reps, "Reps", class: "text-muted-foreground block" %>
-      <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
-    </div>
+<%= form_with model: completed_set do |form| %>
+  <fieldset class="flex gap-8 items-center bg-background border border-border p-4 m-2 rounded-md">
+    <%= form.hidden_field :entry_id, value: entry.id %>
+    <%= form.hidden_field :order, value: order %>
+    
+    <div class="flex gap-2 items-center">
+      <legend class="text-foreground">Set <%= order %></legend>
 
-    <div>
-      <%= form.label :weight, "Weight", class: "text-muted-foreground block" %>
-      <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
+      <div>
+        <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
+        <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
+      </div>
+      <div>
+        <%= form.label :weight, "Weight", class: "text-muted-foreground block text-xs" %>
+        <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
+      </div>
+      <%= form.submit "Save", class: "btn-primary px-4 py-2 rounded-md hover:bg-primary/80 cursor-pointer" %>
+      <%= link_to "Cancel", completed_set_path(completed_set), class: "btn-link" %>
     </div>
-  </div>
-</fieldset>
+  </fieldset>
+<% end %>

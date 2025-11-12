@@ -29,6 +29,10 @@ class Workout < ApplicationRecord
     plan_enrollment.plan.name
   end
 
+  def less_completed_sets_than_entry_sets?(entry)
+    completed_sets_by_entry[entry.id].count < entry.sets
+  end
+
   def only_one_started_workout_per_plan_enrollment
     if plan_enrollment.workouts.started.count > 1
       errors.add(:base, "Only one started workout per plan enrollment is allowed")

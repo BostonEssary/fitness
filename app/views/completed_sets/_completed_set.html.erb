@@ -1,0 +1,14 @@
+<%= turbo_frame_tag dom_id(completed_set) do %>
+    <div class="flex gap-8 items-center bg-background border border-border p-4 m-2 rounded-md">
+        <p>Set <%= completed_set.order %></p>
+        <div>
+        <p class="text-muted-foreground text-xs">Reps</p>
+        <p class="font-bold text-xl"><%= completed_set.reps %></p>
+        </div>
+        <div>
+        <p class="text-muted-foreground text-xs">Weight</p>
+        <p class="font-bold text-xl"><%= completed_set.weight %> lbs</p>
+        </div>
+        <%= link_to "Edit", edit_completed_set_path(completed_set), class: "btn-link" %>
+    </div>
+<% end %>

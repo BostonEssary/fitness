@@ -1,0 +1,17 @@
+<fieldset class="my-4 py-4 border-b border-border last:border-b-0">
+  <legend class="font-semibold text-foreground">Set <%= set_number %></legend>
+  <%= form.hidden_field :entry_id, value: entry.id %>
+  <%= form.hidden_field :order, value: form.index + 1 %>
+  
+  <div class="flex gap-2">
+    <div>
+      <%= form.label :reps, "Reps", class: "text-muted-foreground block" %>
+      <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
+    </div>
+
+    <div>
+      <%= form.label :weight, "Weight", class: "text-muted-foreground block" %>
+      <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
+    </div>
+  </div>
+</fieldset>

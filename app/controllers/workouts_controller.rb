@@ -35,7 +35,7 @@ class WorkoutsController < ApplicationController
   private
 
   def build_completed_sets_for_form
-    BuildCompletedSetsForFormService.new(@workout, @entries).call
+    @workout.completed_sets.build
   end
 
   def workout_params

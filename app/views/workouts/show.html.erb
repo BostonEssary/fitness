@@ -11,8 +11,9 @@
         <div class="bg-card border border-border p-4 rounded-md">
           <% set_number = 1 %>                  
           <h4 class="text-primary"><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></h4>
-          <%= form.fields_for :completed_sets, @completed_sets_by_entry[entry.id] do |completed_set_form| %>
-            <%= render 'completed_sets/form', form: completed_set_form, entry: entry, set_number: set_number %>
+          <%= render partial: 'completed_sets/completed_set', collection: @completed_sets_by_entry[entry.id], as: :completed_set %>
+          <%= form.fields_for :completed_sets do |completed_set_form| %>
+            <%= render 'completed_sets/nested_form', form: completed_set_form, entry: entry, set_number: set_number %>
             <% set_number += 1 %>
           <% end %>
         </div>
