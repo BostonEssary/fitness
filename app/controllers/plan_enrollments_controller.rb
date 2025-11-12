@@ -10,6 +10,7 @@ class PlanEnrollmentsController < ApplicationController
       redirect_to @plan_enrollment, notice: "Plan enrollment was successfully created."
     else
       @plan = @plan_enrollment.plan
+      flash.now[:alert] = @plan_enrollment.errors.full_messages.join(", ")
       render 'plans/show', status: :unprocessable_entity
     end
   end

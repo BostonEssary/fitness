@@ -1,6 +1,6 @@
 class Workout < ApplicationRecord
   belongs_to :plan_enrollment
-  has_many :completed_sets
+  has_many :completed_sets, dependent: :destroy
   accepts_nested_attributes_for :completed_sets, reject_if: lambda { |attrs| attrs[:reps].blank? || attrs[:weight].blank? }
 
   enum :status, { started: 0, completed: 1, skipped: 2 }
