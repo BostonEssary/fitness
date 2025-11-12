@@ -3,12 +3,9 @@
 
   <section>
     <h2>Active Plan</h2>
-    <% if @active_plans.any? %>
+    <% if @active_plan_enrollment.present? %>
       <article>
-        <% @active_plans.each do |plan| %>
-          <h3><%= link_to plan.name, plan_path(plan) %></h3>
-          <p><%= plan.days %> days</p>
-        <% end %>
+        <h3><%= link_to @active_plan_enrollment.plan.name, plan_enrollment_path(@active_plan_enrollment) %></h3>
       </article>
     <% else %>
       <p>No active plan</p>

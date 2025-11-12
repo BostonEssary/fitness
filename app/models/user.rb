@@ -8,9 +8,8 @@ class User < ApplicationRecord
   
   validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   
-  def active_plans
-    active_plan_ids = plan_enrollments.active.pluck(:plan_id)
-    Plan.where(id: active_plan_ids)
+  def active_plan_enrollment
+    plan_enrollments.active.first
   end
 
   def workouts
