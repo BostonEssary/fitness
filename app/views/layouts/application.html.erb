@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
   <head>
     <title><%= content_for(:title) || "Fitness" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,8 +23,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class='container'>
-    <nav class='sidenav'>
+  <body class='container bg-background'>
+    <nav class='sidenav bg-sidebar'>
       <ul class='sidenav-list'>
         <%= render "shared/nav_links" %>
       </ul>
