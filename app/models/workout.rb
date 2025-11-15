@@ -35,7 +35,8 @@ class Workout < ApplicationRecord
   end
 
   def only_one_started_workout_per_plan_enrollment
-    if plan_enrollment.workouts.started.count > 1
+    other_started_workouts = plan_enrollment.workouts.started.where.not(id: id)
+    if other_started_workouts.any?
       errors.add(:base, "Only one started workout per plan enrollment is allowed")
     end
   end

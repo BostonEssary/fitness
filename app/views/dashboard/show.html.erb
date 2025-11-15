@@ -1,5 +1,5 @@
 <main>
-  <h1>Dashboard</h1>
+  <%= render "shared/header", title: "Dashboard" %>
 
   <section>
     <h2>Active Plan</h2>
@@ -9,14 +9,12 @@
           <h3 class="text-primary"><%= @active_plan_enrollment.plan.name %></h3>
           <p class="text-muted-foreground"><%= @active_plan_enrollment.plan.days %> day workout plan</p>
         </div>
-        <div class="mt-2 py-4">
-          <% if @active_plan_enrollment.workouts.started.any? %>
+        <div class="mt-2 py-4 ">
+          <% if @active_plan_enrollment.started_workout.present? %>
             <p class="text-muted-foreground py-4">Workout started on <%= @active_plan_enrollment.workouts.started.first.created_at.strftime("%B %d, %Y") %></p>
             <%= link_to "Resume Workout", workout_path(@active_plan_enrollment.workouts.started.first), class: "btn-primary" %>
-          <% else %>
-            <%= button_to "Start Workout", workouts_path(workout: { plan_enrollment_id: @active_plan_enrollment.id, day: 1 }), method: :post, class: "btn-primary" %>
           <% end %>
-          <%= link_to "View Plan", plan_enrollment_path(@active_plan_enrollment), class: "btn-link px-4" %>
+          <%= link_to "View Active Plan Enrollment", plan_enrollment_path(@active_plan_enrollment), class: "btn-link px-4" %>
         </div>
       </article>
     <% else %>

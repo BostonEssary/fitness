@@ -1,7 +1,5 @@
 <section>
-  <header>
-    <h1>Workout</h1>
-  </header>
+  <%= render "shared/header", title: "Workout" %>
 
   <%= turbo_stream_from @workout %>
   <% if @workout.started? %>
@@ -30,7 +28,11 @@
         <div class="bg-card border border-border p-4 rounded-md">
           <% set_number = @workout.completed_set_count_for_entry(entry) + 1 %>                  
           <h4 class="text-primary"><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></h4>
-          <%= render partial: 'completed_sets/completed_set', collection: @completed_sets_by_entry[entry.id], as: :completed_set %>
+          <% if @workout.completed_sets_by_entry[entry.id].present? %>
+            <%= render partial: 'completed_sets/completed_set', collection: @completed_sets_by_entry[entry.id], as: :completed_set %>
+          <% else %>
+            <p class="text-muted-foreground">No sets completed</p>
+          <% end %>
         </div>
       <% end %>
     </div>

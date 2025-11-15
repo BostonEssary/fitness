@@ -17,4 +17,16 @@ class PlanEnrollment < ApplicationRecord
     PlanEnrollment.active.where(user_id: user_id).where.not(id: id).exists?
   end
 
+  def started_workout
+    workouts.started.first
+  end
+
+  def completed_workouts
+    workouts.completed
+  end
+
+  def skipped_workouts
+    workouts.skipped
+  end
+
 end
