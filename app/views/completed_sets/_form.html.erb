@@ -2,11 +2,20 @@
   <fieldset class="flex gap-8 items-center bg-background border border-border p-4 m-2 rounded-md">
     <%= form.hidden_field :entry_id, value: entry.id %>
     <%= form.hidden_field :workout_id, value: completed_set.workout.id %>
+    <%# This is used to determine the order of the set in the form for turbo_frames %>
+    <%= form.hidden_field :order, value: order %>
 
     <div class="flex gap-2 items-center">
       <legend class="text-foreground">Set <%= order %></legend>
 
       <div>
+        <% if completed_set.errors[:reps].present? %>
+          <div class="!text-red-500 text-xs">
+            <%= completed_set.errors[:reps].join(", ").capitalize %>
+          </div>
+        <% else %>
+          <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
+        <% end %>
         <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
         <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
       </div>

@@ -17,7 +17,11 @@ class CompletedSetsController < ApplicationController
   def create
     @completed_set = CompletedSet.new(completed_set_params)
     if @completed_set.save
-      redirect_to @completed_set.workout
+      respond_to do |format|
+        format.turbo_stream
+      end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 

@@ -1,11 +1,16 @@
 class CompletedSet < ApplicationRecord
-  belongs_to :workout, touch: true
+  belongs_to :workout
   belongs_to :entry
 
   before_create :set_order
 
   validates :reps, presence: true, numericality: { greater_than: 0 }
   validates :weight, presence: true, numericality: { greater_than: 0 }
+
+  # This is used to target the frame that needs to be refreshed
+  def frame_id
+    "completed-set-#{order}-#{entry.id}"
+  end
 
   private
 
