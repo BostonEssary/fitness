@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resource :complete, only: [:create], controller: 'entries/complete'
   end
   resources :workouts, only: [ :index, :create, :show, :update ]
-  resources :completed_sets, only: [ :edit, :update, :show ]
+  resources :completed_sets, only: [ :edit, :update, :show, :create ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

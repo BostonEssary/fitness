@@ -1,8 +1,8 @@
 <%= form_with model: completed_set do |form| %>
   <fieldset class="flex gap-8 items-center bg-background border border-border p-4 m-2 rounded-md">
     <%= form.hidden_field :entry_id, value: entry.id %>
-    <%= form.hidden_field :order, value: order %>
-    
+    <%= form.hidden_field :workout_id, value: completed_set.workout.id %>
+
     <div class="flex gap-2 items-center">
       <legend class="text-foreground">Set <%= order %></legend>
 
@@ -15,7 +15,9 @@
         <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
       </div>
       <%= form.submit "Save", class: "btn-primary px-4 py-2 rounded-md hover:bg-primary/80 cursor-pointer" %>
-      <%= link_to "Cancel", completed_set_path(completed_set), class: "btn-link" %>
+      <% if completed_set.persisted? %>
+        <%= link_to "Cancel", completed_set_path(completed_set), class: "btn-link" %>
+      <% end %>
     </div>
   </fieldset>
 <% end %>

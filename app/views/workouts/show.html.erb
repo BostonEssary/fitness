@@ -3,23 +3,22 @@
     <h1>Workout</h1>
   </header>
 
+  <%= turbo_stream_from @workout %>
   <article>
     <h2>Workout Details</h2>
-    <%= form_with model: @workout, url: workout_path(@workout), method: :put do |form| %>
     <div class="flex flex-col gap-4">
       <% @entries.each_with_index do |entry, index| %>
         <div class="bg-card border border-border p-4 rounded-md">
-          <% set_number = 1 %>                  
+          <% set_number = @workout.completed_set_count_for_entry(entry) + 1 %>                  
           <h4 class="text-primary"><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></h4>
           <%= render partial: 'completed_sets/completed_set', collection: @completed_sets_by_entry[entry.id], as: :completed_set %>
-          <%= form.fields_for :completed_sets do |completed_set_form| %>
-            <%= render 'completed_sets/nested_form', form: completed_set_form, entry: entry, set_number: set_number %>
-            <% set_number += 1 %>
+          <% @workout.sets_left_to_complete(entry).times do |i| %>
+            <%= render 'completed_sets/form', completed_set: @workout.completed_sets.build, entry: entry, order: set_number + i %>
           <% end %>
         </div>
       <% end %>
     </div>
-    <%= form.submit "Complete Workout" %>
-    <% end %>
+
+    <%= button_to "Complete Workout", workout_path(@workout, params: { workout: { status: :completed } }), method: :put, class: "btn-primary" %>
   </article>
 </section>

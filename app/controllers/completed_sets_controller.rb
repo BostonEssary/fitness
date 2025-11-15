@@ -14,9 +14,16 @@ class CompletedSetsController < ApplicationController
     end
   end
 
+  def create
+    @completed_set = CompletedSet.new(completed_set_params)
+    if @completed_set.save
+      redirect_to @completed_set.workout
+    end
+  end
+
   private
 
   def completed_set_params
-    params.require(:completed_set).permit(:reps, :weight, :order, :entry_id)
+    params.require(:completed_set).permit(:reps, :weight, :order, :entry_id, :workout_id)
   end
 end
