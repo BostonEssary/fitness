@@ -39,6 +39,6 @@ class WorkoutsController < ApplicationController
   end
 
   def workout_params
-    params.require(:workout).permit(:plan_enrollment_id, :day, completed_sets_attributes: [:id, :entry_id, :order, :reps, :weight])
+    params.require(:workout).permit(:plan_enrollment_id, :day, :completed_at, :status)
   end
 end
