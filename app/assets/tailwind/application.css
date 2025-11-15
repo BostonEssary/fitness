@@ -155,4 +155,8 @@
     .btn-link {
       @apply text-primary hover:text-primary/80 cursor-pointer;
     }
+
+    .field_with_errors > input {
+      @apply !border-destructive;
+    }
   }

@@ -11,6 +11,8 @@ class CompletedSetsController < ApplicationController
     @completed_set = CompletedSet.find(params[:id])
     if @completed_set.update(completed_set_params)
       redirect_to @completed_set
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 

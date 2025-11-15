@@ -9,6 +9,8 @@
         <p class="text-muted-foreground text-xs">Weight</p>
         <p class="font-bold text-xl"><%= completed_set.weight %> lbs</p>
         </div>
-        <%= link_to "Edit", edit_completed_set_path(completed_set), class: "btn-link" %>
+        <%= link_to edit_completed_set_path(completed_set), class: "btn-link text-foreground" do %>
+            <%= render "shared/icons/edit", fill: "text-foreground hover:text-primary" %>
+        <% end %>
     </div>
 <% end %>
