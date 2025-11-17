@@ -6,19 +6,23 @@
     <article>
       <h2>Workout Details</h2>
       <div class="flex flex-col gap-4">
-        <% @entries.each_with_index do |entry, index| %>
-          <div class="bg-card border border-border p-4 rounded-md">
-            <% set_number = @workout.completed_set_count_for_entry(entry) + 1 %>                  
-            <h4 class="text-primary"><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></h4>
-            <div id="completed-sets">
-              <%= render partial: 'completed_sets/completed_set', collection: @completed_sets_by_entry[entry.id], as: :completed_set %>
-            </div>
-            <% @workout.sets_left_to_complete(entry).times do |i| %>
-              <%= turbo_frame_tag dom_id(CompletedSet, "completed-set-#{set_number + i}-#{entry.id}"), refresh: 'morph' do %>
-                <%= render 'completed_sets/form', completed_set: @workout.completed_sets.build, entry: entry, order: set_number + i %>
-              <% end %>
+        <%= render TabsComponent.new do |component| %>
+          <% @entries.each_with_index do |entry, index| %>
+            <%= component.with_tab(name: entry.exercise.name) do %>
+              <div class="bg-card border border-border p-4 rounded-md">
+                <% set_number = @workout.completed_set_count_for_entry(entry) + 1 %>                  
+                <h4 class="text-primary"><%= entry.exercise.name %> <%= entry.humanized_sets_and_reps %></h4>
+                <div id="completed-sets">
+                  <%= render partial: 'completed_sets/completed_set', collection: @completed_sets_by_entry[entry.id], as: :completed_set %>
+                </div>
+                <% @workout.sets_left_to_complete(entry).times do |i| %>
+                  <%= turbo_frame_tag dom_id(CompletedSet, "completed-set-#{set_number + i}-#{entry.id}"), refresh: 'morph' do %>
+                    <%= render 'completed_sets/form', completed_set: @workout.completed_sets.build, entry: entry, order: set_number + i %>
+                  <% end %>
+                <% end %>
+              </div>
             <% end %>
-          </div>
+          <% end %>
         <% end %>
       </div>
 

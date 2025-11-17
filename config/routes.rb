@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [ :new, :create ]
   resources :passwords, param: :token
   resources :plans, only: [ :show, :index, :new, :create ]
-  resources :plan_enrollments, only: [ :show, :create ]
+  resources :plan_enrollments, only: [ :show, :create, :update ]
   resources :exercises, only: [ :index, :new, :create ]
   resources :entries do
     resource :complete, only: [:create], controller: 'entries/complete'
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "dashboard#show"
+  root "dashboards#show"
 end

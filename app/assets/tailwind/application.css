@@ -159,4 +159,20 @@
     .field_with_errors > input {
       @apply !border-destructive;
     }
+
+    .panels > .panel {
+      @apply hidden;
+    }
+
+    .panels > .panel.active {
+      @apply block;
+    }
+
+    .tab {
+      @apply bg-sidebar text-sidebar-foreground p-4 cursor-pointer;
+    }
+
+    .tab.active {
+      @apply text-primary border-b-2 border-primary;
+    }
   }

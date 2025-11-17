@@ -15,6 +15,7 @@
             <%= link_to "Resume Workout", workout_path(@active_plan_enrollment.workouts.started.first), class: "btn-primary" %>
           <% end %>
           <%= link_to "View Active Plan Enrollment", plan_enrollment_path(@active_plan_enrollment), class: "btn-link px-4" %>
+          <%= button_to "Retire Plan", plan_enrollment_path(@active_plan_enrollment, params: { plan_enrollment: { status: :inactive } }), method: :put, class: "btn-link px-4" %>
         </div>
       </article>
     <% else %>

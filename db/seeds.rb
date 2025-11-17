@@ -55,7 +55,7 @@ Plan.all.each do |plan|
   # Create entries for each day of the plan
   (1..plan.days).each do |day_number|
     # Randomly assign 2-4 exercises per day for variety
-    exercises_per_day = rand(2..4)
+    exercises_per_day = rand(2..12)
     
     exercises_per_day.times do |i|
       entries << {

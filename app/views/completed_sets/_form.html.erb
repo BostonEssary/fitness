@@ -5,10 +5,12 @@
     <%# This is used to determine the order of the set in the form for turbo_frames %>
     <%= form.hidden_field :order, value: order %>
 
-    <div class="flex gap-2 items-center">
-      <legend class="text-foreground">Set <%= order %></legend>
+    <div class="flex flex-col md:flex-row gap-2 items-center">
+      
 
-      <div>
+      <div class="flex gap-2 items-center">
+        <legend class="text-foreground">Set <%= order %></legend>
+        <div>
         <% if completed_set.errors[:reps].present? %>
           <div class="!text-red-500 text-xs">
             <%= completed_set.errors[:reps].join(", ").capitalize %>
@@ -17,16 +19,19 @@
           <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
         <% end %>
         <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
-        <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
+        <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 max-w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
       </div>
       <div>
         <%= form.label :weight, "Weight", class: "text-muted-foreground block text-xs" %>
-        <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
+        <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 max-w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
       </div>
-      <%= form.submit "Save", class: "btn-primary px-4 py-2 rounded-md hover:bg-primary/80 cursor-pointer" %>
-      <% if completed_set.persisted? %>
-        <%= link_to "Cancel", completed_set_path(completed_set), class: "btn-link" %>
-      <% end %>
+      </div>
+      <div>
+        <%= form.submit "Save", class: "btn-primary px-4 py-2 rounded-md hover:bg-primary/80 cursor-pointer" %>
+        <% if completed_set.persisted? %>
+          <%= link_to "Cancel", completed_set_path(completed_set), class: "btn-link" %>
+        <% end %>
+      </div>
     </div>
   </fieldset>
 <% end %>

@@ -1,0 +1,16 @@
+<div class="flex flex-col min-w-0" data-controller="tabs" data-tabs-active-tab-value="0" data-action="turbo:before-morph-attribute->tabs#persistTabOnMorph">
+    <div class="overflow-x-auto">
+        <div class="flex gap-2">
+            <% tabs.each_with_index do |tab, index| %>
+                <%= link_to tab.name, "#", class: "tab flex-shrink-0 #{index == 0 ? 'active' : ''}", data: { action: "tabs#selectTab", tabs_target: "tab", target: index } %>
+            <% end %>
+        </div>
+    </div>
+    <div class="panels" data-tabs-target="panels">
+        <% tabs.each_with_index do |tab, index| %>
+            <div class="panel <%= "active" if index == 0 %>" data-tabs-target="panel" data-target="<%= index %>">
+                <%= tab.content %>
+            </div>
+        <% end %>
+    </div>
+</div>

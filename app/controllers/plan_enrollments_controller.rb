@@ -14,10 +14,20 @@ class PlanEnrollmentsController < ApplicationController
       render 'plans/show', status: :unprocessable_entity
     end
   end
+
+  def update
+    @plan_enrollment = PlanEnrollment.find(params[:id])
+    if @plan_enrollment.update(plan_enrollment_params)
+      redirect_to dashboard_path, notice: "Plan enrollment was successfully updated."
+    else
+      render 'dashboards/show', status: :unprocessable_entity
+    end
+  end
+
   private
 
   def plan_enrollment_params
-    params.require(:plan_enrollment).permit(:plan_id, :user_id)
+    params.require(:plan_enrollment).permit(:plan_id, :user_id, :status)
   end
 
   def set_plan_enrollment

@@ -31,7 +31,7 @@
 
 .main {
   grid-area: main;
-  padding: 20px;
+  min-width: 0;
 }
 
 .bottom-nav {
@@ -49,6 +49,10 @@
     display: none;
   }
 
+  .main {
+    padding-bottom: 80px; /* Space for fixed bottom nav */
+  }
+
   .bottom-nav-list {
     list-style: none;
     display: flex;
@@ -61,7 +65,8 @@
     display: block;
     position: fixed;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
     background-color: #f0f0f0;
     padding: 10px;
   }
