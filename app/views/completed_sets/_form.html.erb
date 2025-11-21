@@ -11,18 +11,11 @@
       <div class="flex gap-2 items-center">
         <legend class="text-foreground">Set <%= order %></legend>
         <div>
-        <% if completed_set.errors[:reps].present? %>
-          <div class="!text-red-500 text-xs">
-            <%= completed_set.errors[:reps].join(", ").capitalize %>
-          </div>
-        <% else %>
-          <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
-        <% end %>
-        <%= form.label :reps, "Reps", class: "text-muted-foreground block text-xs" %>
-        <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 max-w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
+          <%= render FormLabelComponent.new(form: form, field: :reps, label: "Reps", model: completed_set) %>
+          <%= form.number_field :reps, min: 1, class: "bg-background border border-border rounded-md p-2 max-w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Reps" %>
       </div>
       <div>
-        <%= form.label :weight, "Weight", class: "text-muted-foreground block text-xs" %>
+        <%= render FormLabelComponent.new(form: form, field: :weight, label: "Weight", model: completed_set) %>
         <%= form.number_field :weight, min: 1, step: 0.5, class: "bg-background border border-border rounded-md p-2 max-w-24 focus:outline-none focus:ring-2 focus:ring-primary", placeholder: "Enter Weight" %>
       </div>
       </div>

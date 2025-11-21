@@ -1,8 +1,9 @@
-<div class="flex flex-col min-w-0" data-controller="tabs" data-tabs-active-tab-value="0" data-action="turbo:before-morph-attribute->tabs#persistTabOnMorph">
+<div class="flex flex-col min-w-0" data-controller="tabs" data-action="turbo:before-morph-attribute->tabs#persistActiveTab">
     <div class="overflow-x-auto">
         <div class="flex gap-2">
             <% tabs.each_with_index do |tab, index| %>
-                <%= link_to tab.name, "#", class: "tab flex-shrink-0 #{index == 0 ? 'active' : ''}", data: { action: "tabs#selectTab", tabs_target: "tab", target: index } %>
+                <%= link_to tab.name, "#", class: "tab flex-shrink-0 #{'active' if index == 0}", 
+                                           data: { action: "tabs#selectTab:prevent", tabs_target: "tab", target: index } %>
             <% end %>
         </div>
     </div>
@@ -14,3 +15,4 @@
         <% end %>
     </div>
 </div>
+

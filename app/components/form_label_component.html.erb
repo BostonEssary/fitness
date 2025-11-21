@@ -1,0 +1,8 @@
+<% if errors_present? %>
+  <div class="!text-red-500 text-xs">
+    <%= error_messages %>
+  </div>
+<% else %>
+  <%= form.label field, label, class: "text-muted-foreground block text-xs" %>
+<% end %>
+
