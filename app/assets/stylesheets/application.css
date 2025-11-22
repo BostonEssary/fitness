@@ -28,3 +28,30 @@ body {
 .completed {
   text-decoration: line-through;
 }
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+::view-transition-new(slide-left) {
+  animation: slide-left 0.1s ease-in-out;
+}
+
+::view-transition-group(root) {
+  animation: none;
+}

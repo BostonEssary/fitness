@@ -1,3 +1,5 @@
 <%= turbo_frame_tag dom_id(@completed_set) do %>
-  <%= render 'form', completed_set: @completed_set, entry: @completed_set.entry, order: @completed_set.order %>
+  <div id="<%= dom_id(@completed_set, :content) %>" data-turbo-transition="slide-left" >
+    <%= render 'form', completed_set: @completed_set, entry: @completed_set.entry, order: @completed_set.order %>
+  </div>
 <% end %>

@@ -1,5 +1,6 @@
 <%= turbo_frame_tag dom_id(completed_set) do %>
-    <div class="flex gap-8 items-center bg-background border border-border p-4 m-2 rounded-md">
+    <div id="<%= dom_id(completed_set, :content) %>" 
+       data-turbo-transition="slide-left"  class="flex gap-8 items-center bg-background border border-border p-4 m-2 rounded-md">
         <p>Set <%= completed_set.order %></p>
         <div>
         <p class="text-muted-foreground text-xs">Reps</p>
